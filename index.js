@@ -51,7 +51,6 @@ document.addEventListener("DOMContentLoaded", function () {
       belumSelesaiDibacaList.appendChild(bookElement);
     }
 
-    // Tambahkan event listener untuk tombol delete
     const deleteButton = bookElement.querySelector(".delete-btn");
     deleteButton.addEventListener("click", function () {
       deleteBook(book.id);
@@ -64,7 +63,7 @@ document.addEventListener("DOMContentLoaded", function () {
       if (book.isComplete === true) {
         bookElement.remove();
         book.isComplete = false;
-        addBookToShelf(book); // Jika buku sudah selesai, pindahkan ke rak "Selesai Dibaca"
+        addBookToShelf(book);
       } else if (book.isComplete === false) {
         bookElement.remove();
         book.isComplete = true;
@@ -81,13 +80,11 @@ document.addEventListener("DOMContentLoaded", function () {
     localStorage.setItem("books", JSON.stringify(books));
   }
 
-  // Fungsi untuk mengambil data buku dari localStorage (jika ada)
   function getBooksFromLocalStorage() {
     const storedBooks = localStorage.getItem("books");
     return storedBooks ? JSON.parse(storedBooks) : [];
   }
 
-  // Fungsi untuk memperbarui teks tombol setelah buku dipindahkan
   function updateMoveButton(bookElement, isComplete) {
     const moveButton = bookElement.querySelector(".move-btn");
     moveButton.textContent = isComplete
@@ -95,21 +92,17 @@ document.addEventListener("DOMContentLoaded", function () {
       : "Move to Finished";
   }
 
-  // Data buku yang disimpan
   let books = getBooksFromLocalStorage();
   console.log("Books:", books);
 
-  // Pastikan bahwa books adalah array sebelum menggunakan forEach
   if (!Array.isArray(books)) {
-    books = []; // Jika bukan array, ubah menjadi array kosong
+    books = [];
   }
 
-  // Menampilkan data buku yang ada pada rak saat aplikasi dimuat
   books.forEach(function (book) {
     addBookToShelf(book);
   });
 
-  // Fungsi untuk menambahkan buku baru
   form.addEventListener("submit", function (event) {
     event.preventDefault();
     const title = document.getElementById("title").value;
@@ -121,7 +114,7 @@ document.addEventListener("DOMContentLoaded", function () {
       id: id,
       title: title,
       author: author,
-      year: year,
+      year: parseInt(year),
       isComplete: isComplete,
     };
     addBookToShelf(newBook);
@@ -138,7 +131,7 @@ document.addEventListener("DOMContentLoaded", function () {
       if (!book.isComplete) {
         selesaiDibacaList.appendChild(bookElement);
         book.isComplete = true;
-        updateMoveButton(bookElement, true); // Update teks tombol
+        updateMoveButton(bookElement, true);
         saveBooksToLocalStorage();
       }
     }
@@ -171,7 +164,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   //   const starterBooksContainer = document.getElementById("starter-books");
 
-  // Starter books data in JSON format
   const starterBooksJSON = [
     {
       id: 3619427508299,
@@ -285,7 +277,6 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
-    // Check if the starter books JSON data is available
     if (!starterBooksJSON || starterBooksJSON.length === 0) {
       console.warn("No starter books data available");
       return;
