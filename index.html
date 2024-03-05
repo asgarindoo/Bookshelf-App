@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookshelf App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="navbar">
+        <nav>
+            <img src="/Assets/bookshelf-logo.png">
+            <h1>Bookshelf Apps</h1>
+        </nav>
+    </div>
+
+<div class="outer-countainer">
+    <div class="sidebar">
+        <div class="container">
+            <!-- Konten sidebar disini -->
+            <form id="form-buku">
+                <input type="text" id="title" placeholder="Title" required>
+                <input type="text" id="author" placeholder="Author" required>
+                <input type="number" id="year" placeholder="Year" required>
+                <label for="isComplete">
+                    <input type="checkbox" id="isComplete"> Completed
+                </label>
+                <button type="submit" class="add-book">Add Book</button>
+            </form>
+        </div>
+    </div>
+    <div class="main-content">
+        <div class="middle-container">
+            <!-- Konten utama disini -->
+            
+            <div class="shelf" id="belum-selesai-dibaca">
+                <h2>Unfinished Reading</h2>
+            </div>
+            
+            <div class="shelf" id="selesai-dibaca">
+                <h2>Finished Reading</h2>
+            </div>
+        </div>
+    </div>
+    <div class="rightbar">
+        <div class="right-container">
+            <!-- Konten sidebar disini -->
+            <h2>Starter Books</h2>
+            <div id="starter-books"></div>
+        </div>
+    </div>
+</div>
+   
+
+    <script src="index.js"></script>
+</body>
+</html>
